@@ -9,10 +9,10 @@ Network_Monitor
 |- port_scanner.py
 |- devices.json
 |- templates/
-    |- dashboard.html
+|   |- dashboard.html
 |- logs/
-    |- ping.log
-    |- port.log
+|   |- ping.log
+|   |- port.log
 -------------------
 cihaz ekleme çıkarma gibi durumlarda devices.json dosyasındaki bilgileri değiştirmeniz yeterlidir.
 logs dosyalarında ise hangi ip ya da portun hangi tarih/saatte açık ya da kapalı olduğu bilgileri yazılır.

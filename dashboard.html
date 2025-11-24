@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Network Monitoring Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f1f1;
+            padding: 20px;
+        }
+        .device {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .online {
+            color: green;
+            font-weight: bold;
+        }
+        .offline {
+            color: red;
+            font-weight: bold;
+        }
+        .title {
+            background: #4CAF50;
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="title">
+        <h1>IP Kamera & Gişe Cihazları Network Monitoring Paneli</h1>
+    </div>
+
+    {% for d in devices %}
+    <div class="device">
+        <h2>{{ d.name }} ({{ d.ip }})</h2>
+
+        <p>Durum:  
+            {% if d.status %}
+                <span class="online">ONLINE</span>
+            {% else %}
+                <span class="offline">OFFLINE</span>
+            {% endif %}
+        </p>
+
+        <h4>Port Durumları:</h4>
+        <ul>
+            {% for port, state in d.ports.items() %}
+                <li>
+                    Port {{ port }} → 
+                    {% if state %}
+                        <span class="online">OPEN</span>
+                    {% else %}
+                        <span class="offline">CLOSED</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+
+</body>
+</html>
